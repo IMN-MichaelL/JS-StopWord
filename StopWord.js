@@ -1,28 +1,25 @@
-String.isStopWord = function(word)
-{
-	var regex = new RegExp("\\b"+word+"\\b","i");
-	if(stopWords.search(regex) < 0)
-	{
+String.isStopWord = function (word) {
+	var regex = new RegExp("," + word + ",", "i");
+
+	if (stopWords.search(regex) < 0) {
 		return false;
-	}else
-	{
-		return true;	
+	} else {
+		return true;
 	}
 }
 
-String.prototype.removeStopWords = function()
-{
+String.prototype.removeStopWords = function() {
 	words = new Array();
-	
-	this.replace(/\b[\w]+\b/g,
-			function($0)
-			{
-				if(!String.isStopWord($0))
-				{
-					words[words.length] = $0.trim();
-				}
+
+	this.replace(
+		/\b[\w]+\b/g,
+		function($0) {
+			if(!String.isStopWord($0)) {
+				words[words.length] = $0.trim();
 			}
-		); 
+		}
+	);
+
 	return words.join(" ");
 }
 
